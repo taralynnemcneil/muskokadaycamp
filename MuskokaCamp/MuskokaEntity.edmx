@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="muskokaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="camperProfile">
+          <Key>
+            <PropertyRef Name="camperID" />
+          </Key>
+          <Property Name="camperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="familyName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="rate" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="contactName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="contactRelation" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="contactNumber" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="importantNotes" Type="varchar" MaxLength="8000" />
+          <Property Name="photo" Type="varbinary" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="20" />
+          <Property Name="amount" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="payment_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="camperID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registrationDates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="255" />
+          <Property Name="signInTime" Type="varchar" MaxLength="255" />
+          <Property Name="signOutTime" Type="varchar" MaxLength="255" />
+          <Property Name="signedInBy" Type="varchar" MaxLength="255" />
+          <Property Name="signedOutBy" Type="varchar" MaxLength="255" />
+          <Property Name="camperID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__payment__camperI__6FE99F9F">
+          <End Role="camperProfile" Type="Self.camperProfile" Multiplicity="1" />
+          <End Role="payment" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="camperProfile">
+              <PropertyRef Name="camperID" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="camperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__registrat__campe__02FC7413">
+          <End Role="camperProfile" Type="Self.camperProfile" Multiplicity="1" />
+          <End Role="registrationDates" Type="Self.registrationDates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="camperProfile">
+              <PropertyRef Name="camperID" />
+            </Principal>
+            <Dependent Role="registrationDates">
+              <PropertyRef Name="camperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="muskokaModelStoreContainer">
+          <EntitySet Name="camperProfile" EntityType="Self.camperProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registrationDates" EntityType="Self.registrationDates" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__payment__camperI__6FE99F9F" Association="Self.FK__payment__camperI__6FE99F9F">
+            <End Role="camperProfile" EntitySet="camperProfile" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__registrat__campe__02FC7413" Association="Self.FK__registrat__campe__02FC7413">
+            <End Role="camperProfile" EntitySet="camperProfile" />
+            <End Role="registrationDates" EntitySet="registrationDates" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="muskokaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="camperProfile">
+          <Key>
+            <PropertyRef Name="camperID" />
+          </Key>
+          <Property Name="camperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="familyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="rate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactRelation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="importantNotes" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="Binary" MaxLength="1" FixedLength="false" />
+          <NavigationProperty Name="registrationDates" Relationship="Self.FK__registrat__campe__6383C8BA" FromRole="camperProfile" ToRole="registrationDates" />
+          <NavigationProperty Name="payments" Relationship="muskokaModel.FK__payment__camperI__6477ECF3" FromRole="camperProfile" ToRole="payment" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="payment_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="camperID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="camperProfile" Relationship="muskokaModel.FK__payment__camperI__6477ECF3" FromRole="payment" ToRole="camperProfile" />
+        </EntityType>
+        <EntityType Name="registrationDate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="signInTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="signOutTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="signedInBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="signedOutBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="camperID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="camperProfile" Relationship="Self.FK__registrat__campe__6383C8BA" FromRole="registrationDates" ToRole="camperProfile" />
+          <Property Name="date" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__registrat__campe__6383C8BA">
+          <End Role="camperProfile" Type="Self.camperProfile" Multiplicity="1" />
+          <End Role="registrationDates" Type="Self.registrationDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="camperProfile">
+              <PropertyRef Name="camperID" />
+            </Principal>
+            <Dependent Role="registrationDates">
+              <PropertyRef Name="camperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="muskokaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="camperProfiles" EntityType="Self.camperProfile" />
+          <EntitySet Name="payments" EntityType="Self.payment" />
+          <EntitySet Name="registrationDates" EntityType="Self.registrationDate" />
+          <AssociationSet Name="FK__registrat__campe__6383C8BA" Association="Self.FK__registrat__campe__6383C8BA">
+            <End Role="camperProfile" EntitySet="camperProfiles" />
+            <End Role="registrationDates" EntitySet="registrationDates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__camperI__6477ECF3" Association="muskokaModel.FK__payment__camperI__6477ECF3">
+            <End Role="camperProfile" EntitySet="camperProfiles" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__payment__camperI__6477ECF3">
+          <End Type="muskokaModel.camperProfile" Role="camperProfile" Multiplicity="1" />
+          <End Type="muskokaModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="camperProfile">
+              <PropertyRef Name="camperID" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="camperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="muskokaModelStoreContainer" CdmEntityContainer="muskokaEntities">
+          <EntitySetMapping Name="camperProfiles">
+            <EntityTypeMapping TypeName="muskokaModel.camperProfile">
+              <MappingFragment StoreEntitySet="camperProfile">
+                <ScalarProperty Name="camperID" ColumnName="camperID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="familyName" ColumnName="familyName" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contactName" ColumnName="contactName" />
+                <ScalarProperty Name="contactRelation" ColumnName="contactRelation" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="importantNotes" ColumnName="importantNotes" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="muskokaModel.payment">
+              <MappingFragment StoreEntitySet="payment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="payment_type" ColumnName="payment_type" />
+                <ScalarProperty Name="camperID" ColumnName="camperID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registrationDates">
+            <EntityTypeMapping TypeName="muskokaModel.registrationDate">
+              <MappingFragment StoreEntitySet="registrationDates">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="signInTime" ColumnName="signInTime" />
+                <ScalarProperty Name="signOutTime" ColumnName="signOutTime" />
+                <ScalarProperty Name="signedInBy" ColumnName="signedInBy" />
+                <ScalarProperty Name="signedOutBy" ColumnName="signedOutBy" />
+                <ScalarProperty Name="camperID" ColumnName="camperID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

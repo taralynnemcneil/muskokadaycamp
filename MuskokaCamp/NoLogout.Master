@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NoLogout.master.cs" Inherits="MuskokaCamp.NoLogout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> | Day Camp Program</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="Content/jquery-ui.css"> 
+    <link rel="stylesheet" type="text/css" href="Content/calendar.css">
+    <link rel="stylesheet" type="text/css" href="Content/custom.css" />
+
+
+    <!-- Scripts -->
+    <script src="Scripts/jquery-3.2.0.min.js"></script> 
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>  
+    <script src="Scripts/jquery-ui-1.11.1.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="http://multidatespickr.sourceforge.net/jquery-ui.multidatespicker.js"></script>
+</head>
+<body class="bg-cloud">
+    <!-- ============= HEADER ============= -->
+    <header>
+        <nav class="navbar navbar-default navbar-static-top navbar-md">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="/Images/logo-white.svg" />
+                        <section>
+                            <h6>Muskoka Discovery Centre</h6>
+                            <h5>Day Camp Program</h5>
+                        </section>
+                    </a>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <!-- ============= END HEADER ============= -->
+
+    <form id="form1" runat="server" class="form-horizontal">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                   
+            </asp:ContentPlaceHolder>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $("#datePick").multiDatesPicker();
+            $("#datebox1").datepicker();
+            $("#datebox2").datepicker();
+            $("#datebox3").datepicker();
+            $("#datebox4").datepicker();
+        });
+
+
+    </script>
+</body>
+</html>
